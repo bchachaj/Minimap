@@ -27,7 +27,6 @@ class App extends Component {
       storageBucket: STORAGEBUCKET,
       messagingSenderId: MSGSENDID
     };
-    console.log(firebase);
     firebase.initializeApp(config);
   }
 
