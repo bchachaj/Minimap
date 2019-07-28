@@ -2,13 +2,10 @@ import React, { Component } from 'react'
 import { ScrollView, Image, StyleSheet, Dimensions } from 'react-native'
 
 import ImageZoom from 'react-native-image-pan-zoom';
-import resolveAssetSource from 'resolveAssetSource';
-
 import MarkerGrid from './../Overlay/MarkerGrid';
 
 export default class MapTile extends Component {
 
-    // NOTE: 'require' will only accept a path (string), can't pass in a variable
     constructor(props) {
         super(props)
         const { imgHeight, imgWidth, imgSrc, initMapScale } = props.mapData;
@@ -48,6 +45,7 @@ export default class MapTile extends Component {
                     <MarkerGrid></MarkerGrid>
 
                     <Image
+                    // Have to declare width/height for network or local images 
                         style={{ width: imgWidth, height: imgHeight}}
                         source={{ uri: imgSrc.uri }} 
                     />
