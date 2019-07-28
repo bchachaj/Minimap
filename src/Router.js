@@ -9,11 +9,13 @@ import UserSelectScreen from './components/Map/UserSelectMap/UserSelectScreen';
 const RouterComponent = () => {
   return (
     <Router sceneStyle={{ paddingTop: 0 }} hideNavBar={true}>
-      <Scene key="root" hideTabBar={true}>
+      <Stack hideNavBar={true}>
+        {/* <Scene key="root" hideTabBar={true}> */}
           <Scene key="main" component={UserSelectScreen} hideNavBar={true} />
-          <Scene key="map" component={MapView} hideNavBar={true}/>
+          <Scene key="map" component={MapView} hideNavBar={true} />
 
-      </Scene>
+        {/* </Scene> */}
+      </Stack>
     </Router>
   );
 };

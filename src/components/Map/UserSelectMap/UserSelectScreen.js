@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet } from 'react-native'
+import { Text, View, StyleSheet, Dimensions } from 'react-native'
 import { Appbar, Card, Button, Avatar } from 'react-native-paper';
 import { Actions } from 'react-native-router-flux';
 
@@ -8,7 +8,7 @@ import ImagePicker from 'react-native-image-picker';
 export default class UserSelectScreen extends Component {
 
     state = {
-        avatarSource: ''
+        mapSrc: ''
     }
 
     constructor(props) {
@@ -19,22 +19,13 @@ export default class UserSelectScreen extends Component {
 
 
     handleImageUpload () {
-        console.log('pressed')
-
         const options = {
-            title: 'Select Avatar',
-            customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+            title: 'Upload image for map',
             storageOptions: {
                 skipBackup: true,
                 path: 'images',
             },
         };
-
-        /**
-         * The first arg is the options object for customization (it can also be null or omitted for default options),
-         * The second arg is the callback which sends object: response (more info in the API Reference)
-         */
-        console.log(ImagePicker)
         
         ImagePicker.showImagePicker(options, (response) => {
             console.log('Response = ', response);
@@ -47,15 +38,23 @@ export default class UserSelectScreen extends Component {
                 console.log('User tapped custom button: ', response.customButton);
             } else {
                 const source = { uri: response.uri };
-
                 // You can also display the image using data:
                 // const source = { uri: 'data:image/jpeg;base64,' + response.data };
 
-                this.setState({
-                    avatarSource: source,
-                });
+
+                const initMapScale = (Dimensions.get('window').width / response.width);
+
+                const PARAMS = {
+                    imgWidth: response.width,
+                    imgHeight: response.height,
+                    initMapScale,
+                    imgSrc: source
+                };
+
+                Actions.map({ mapData: PARAMS})
             }
         });     
+
     }
 
     render() {

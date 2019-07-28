@@ -8,7 +8,7 @@ export default class MapContainer extends Component {
     render() {
         return (
             <View>
-                <MapTile image={'./../../../static/map1.jpeg'}/>
+                <MapTile/>
             </View>
         )
     }

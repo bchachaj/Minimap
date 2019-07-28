@@ -7,16 +7,36 @@ import { Button, Card } from 'react-native-paper';
 import { Appbar } from 'react-native-paper';
 
 import MapContainer from './MapComponents/MapContainer';
+// import MapContainer from './MapComponents/MapTile';
+import MapTile from './MapComponents/MapTile';
 
 
 export default class MapView extends Component {
+    constructor(props) {
+        super(props)
+        console.log('struct', props)
+        this.state = { 
+            mapData: props.mapData
+        }
+    }
+
     _goBack = () => Actions.pop();
 
     _onSearch = () => console.log('Searching');
 
     _onMore = () => console.log('Shown more');
 
+    // componentDidMount(props) {
+    //     console.log('mapview', props);
+        
+    // }
+
+
     render() {
+        console.log('viewstate', this.state);
+        
+
+
         return (
             <Fragment>
                 <Appbar.Header style={{ zIndex: 5 }}>
@@ -32,7 +52,7 @@ export default class MapView extends Component {
                 </Appbar.Header>
 
 
-                <MapContainer />
+                <MapTile mapData={this.state.mapData}/>
             </Fragment>
         )
     }

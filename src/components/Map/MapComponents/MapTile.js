@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import { ScrollView, Image, StyleSheet, Dimensions } from 'react-native'
 
 import ImageZoom from 'react-native-image-pan-zoom';
@@ -11,27 +12,33 @@ export default class MapTile extends Component {
     // NOTE: 'require' will only accept a path (string), can't pass in a variable
     constructor(props) {
         super(props)
-        
+        // console.log('constructProps', props)
+        const { imgHeight, imgWidth, imgSrc, initMapScale } = props.mapData;
+        // console.log(imgHeight, imgWidth, imgSrc);
+        console.log(props.mapData)
+
         this.state = {
-            imgWidth: 100,
-            imgHeight: 100,
+            imgWidth,
+            imgHeight,
             initMapScale: 1,
-            imgSrc: props.image || './../../../static/map1.jpeg'
+            imgSrc
         }
     }
 
     componentDidMount() {
-        console.log(this.props );
-        
+        // console.log('mountProps', this.props );
+
         const { width, height } = resolveAssetSource(require('./../../../static/map1.jpeg'));
-        const initMapScale = (Dimensions.get('window').width / width);
-        this.setState({ imgWidth: width, imgHeight: height, initMapScale })
+        console.log('width', width);
+        const initMapScale = (Dimensions.get('window').width / this.state.imgWidth);
+        this.setState({ initMapScale })
     }
 
 
     render() {
-        console.log(this.state);
-
+        // console.log(this.state.imgSrc);
+        const sourceString = this.state.imgSrc; 
+        console.log(sourceString)
         const addViewMargin = (this.state.imgHeight * 0.05);
         const calcViewStyles = { marginBottom: addViewMargin, height: this.state.imgHeight * 1.1, marginTop: -65 };
 
@@ -55,8 +62,11 @@ export default class MapTile extends Component {
 
                     <MarkerGrid></MarkerGrid>
 
-                    <Image
+                    {/* <Image
                         source={require('./../../../static/map1.jpeg')}
+                    /> */}
+                    <Image
+                        source={sourceString}
                     />
                 </ImageZoom>
             </ScrollView>
@@ -84,3 +94,14 @@ var styles = StyleSheet.create({
         height: 1440
     }
 });
+
+
+// const mapDispatchToProps = (dispatch, ownProps) => {
+//     return {
+//         data: ownProps.data,
+//     }
+// };
+
+
+
+// export default connect(null, mapDispatchToProps)(MapTile);
