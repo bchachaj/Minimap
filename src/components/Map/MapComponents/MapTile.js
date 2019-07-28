@@ -1,59 +1,68 @@
 import React, { Component } from 'react'
-import { Text, View, Image, StyleSheet, Dimensions } from 'react-native'
+import { Text, ScrollView, View, Image, StyleSheet, Dimensions } from 'react-native'
 
 import ImageZoom from 'react-native-image-pan-zoom';
 
 import resolveAssetSource from 'resolveAssetSource';
 
 
-var mapURI = "./../../../static/map2.jpeg";
-import image from './../../../static/map2.jpeg';
+var mapURI = "./../../../static/map1.jpeg";
+import image from './../../../static/map1.jpeg';
 // const { width, height } = resolveAssetSource(image);
 
 export default class MapTile extends Component {
     state = {
         imgWidth: 100, 
-        imgHeight: 100
+        imgHeight: 100,
+        initMapScale: 1
     }
 
     componentDidMount() {
         const { width, height } = resolveAssetSource(image);
-        this.setState({ imgWidth: width, imgHeight: height })
-
-        // Image.getSize(mapURI, (width, height) => { this.setState({ imgWidth: width, imgHeight: height }) });
+        const initMapScale = (Dimensions.get('window').width / width);
+        this.setState({ imgWidth: width, imgHeight: height, initMapScale })
     }
 
-
-    // onload, scale zoom wrapper to image width / dimensions.width 
-    
     
     render() {
         console.log(this.state)
+        const addViewMargin = ( this.state.imgHeight * 0.05 ); 
+        console.log(addViewMargin)
+        const calcViewStyles = { marginBottom: addViewMargin, height: this.state.imgHeight * 1.1, marginTop: -65 }; 
+
         return (
-            <View>
+            <ScrollView style={[styles.viewStyles, calcViewStyles]}>
                 <ImageZoom cropWidth={Dimensions.get('window').width }
                     cropHeight={Dimensions.get('window').height}
                     imageWidth={this.state.imgWidth}
                     imageHeight={this.state.imgHeight}
-                    panToMove={true}
+                    // panToMove={true}
                     pinchToZoom={true}
-                    minScale={0.1}
+                    minScale={this.state.initMapScale * .75}
+                    maxScale={this.state.initMapScale * 4}
                     enableCenterFocus={false}
-                    enableSwipeDown={true}
                     supportedOrientations={['portrait', 'portrait-upside-down', 'landscape', 'landscape-left', 'landscape-right']}
                     style={ styles.zoom } 
+                    onMove={(e) => (console.log(e))}
+                    onLongPress={(e) => (this.setState({ initMapScale: this.state.initMapScale }))}
+                    centerOn={{ x: 0, y: 0, scale: this.state.initMapScale, duration: 1 }}
                     >
                     <Image
-                        source={require('./../../../static/map2.jpeg')}
+                        source={require('./../../../static/map1.jpeg')}
                     />
                 </ImageZoom>
-            </View>
+            </ScrollView>
         )   
     }
 }
 
 
 var styles = StyleSheet.create({
+    viewStyles: {
+        marginBottom: 10,
+        marginTop: -50, 
+        zIndex: 0
+    },
     zoom: {
         // borderWidth: 3,
         // borderRadius: 2,

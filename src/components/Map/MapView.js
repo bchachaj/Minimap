@@ -1,6 +1,5 @@
 import React, { Component, Fragment} from 'react'
 import { Text, View } from 'react-native'
-// import { CardSection, Card, Header } from './common'
 import { Button, Card } from 'react-native-paper';
 import { Appbar } from 'react-native-paper';
 
@@ -17,7 +16,7 @@ export default class MapView extends Component {
         return (
             <Fragment>
                 {/* Map header, can import later  */}
-                <Appbar.Header>
+                <Appbar.Header style={{ zIndex: 5 }}>
                     <Appbar.BackAction
                         onPress={this._goBack}
                     />
