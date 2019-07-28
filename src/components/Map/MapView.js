@@ -5,6 +5,7 @@ import { Appbar } from 'react-native-paper';
 
 import MapContainer from './MapComponents/MapContainer';
 
+
 export default class MapView extends Component {
     _goBack = () => console.log('Went back');
 

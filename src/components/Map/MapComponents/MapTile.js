@@ -21,6 +21,8 @@ export default class MapTile extends Component {
     }
 
     componentDidMount() {
+        console.log(this.props );
+        
         const { width, height } = resolveAssetSource(require('./../../../static/map1.jpeg'));
         const initMapScale = (Dimensions.get('window').width / width);
         this.setState({ imgWidth: width, imgHeight: height, initMapScale })
