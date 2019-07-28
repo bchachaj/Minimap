@@ -28,7 +28,6 @@ export default class UserSelectScreen extends Component {
         };
         
         ImagePicker.showImagePicker(options, (response) => {
-            console.log('Response = ', response);
 
             if (response.didCancel) {
                 console.log('User cancelled image picker');
@@ -37,11 +36,8 @@ export default class UserSelectScreen extends Component {
             } else if (response.customButton) {
                 console.log('User tapped custom button: ', response.customButton);
             } else {
-                const source = { uri: response.uri };
                 // You can also display the image using data:
-                // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-
+                const source = { uri: 'data:image/jpeg;base64,' + response.data };
                 const initMapScale = (Dimensions.get('window').width / response.width);
 
                 const PARAMS = {
