@@ -20,8 +20,6 @@ export default class UserSelectScreen extends Component {
 
 
     handleImageUpload() {
-        // this.toggleLoadingState();
-
         const options = {
             title: 'Upload image for map',
             storageOptions: {
@@ -32,19 +30,17 @@ export default class UserSelectScreen extends Component {
 
 
         this.toggleLoadingState();
+
         ImagePicker.showImagePicker(options, (response) => {
 
             if (response.didCancel) {
                 console.log('User cancelled image picker');
-                // this.toggleLoadingState();
             } else if (response.error) {
                 console.log('ImagePicker Error: ', response.error);
 
                 // add dialog
-                // this.toggleLoadingState();
             } else {
                 // You can also display the image using data:
-                // this.toggleLoadingState();
                 const source = { uri: 'data:image/jpeg;base64,' + response.data };
                 const initMapScale = (Dimensions.get('window').width / response.width);
 
@@ -55,7 +51,6 @@ export default class UserSelectScreen extends Component {
                     imgSrc: source
                 };
                 Actions.map({ mapData: PARAMS })
-                // this.toggleLoadingState();
             }
 
             this.toggleLoadingState();
@@ -63,12 +58,10 @@ export default class UserSelectScreen extends Component {
 
     }
 
-    toggleLoadingState(e) {
-        console.log(e)
+    toggleLoadingState() {
         this.state.loadingImage ? this.setState({ loadingImage: false }) : this.setState({ loadingImage: true });
     }
   
-
     renderButton() {
         if(this.state.loadingImage) {
             return (
@@ -100,9 +93,7 @@ export default class UserSelectScreen extends Component {
                         left={(props) => <Avatar.Icon {...props} icon="add" />}
                     />
                     <Card.Content style={styles.uploadWrapper}>
-                        {/* <Button icon="add-a-photo" mode="contained" onPress={() => this.handleImageUpload()}>Upload</Button> */}
                         {this.renderButton()}
-                        {/* <Button icon="add-a-photo" mode="contained" onPress={() => this.handleImageUpload()}>Upload</Button> */}
                     </Card.Content>
                 </Card>
 
@@ -122,8 +113,6 @@ export default class UserSelectScreen extends Component {
         )
     }
 }
-
-
 
 const styles = StyleSheet.create({
     userSelectCard: {
