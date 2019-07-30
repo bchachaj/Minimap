@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
+import Marker from './Marker';
 
 export default class MarkerGrid extends Component {
     state = {
@@ -10,7 +11,7 @@ export default class MarkerGrid extends Component {
     render() {
         return (
             <View style={styles.overlayTest}>
-                <Text style={styles.markerPosTest}> textInComponent </Text>
+                <Marker/>
             </View>
         )
     }
@@ -21,8 +22,8 @@ export default class MarkerGrid extends Component {
 var styles = StyleSheet.create({
     overlayTest: {
         zIndex: 100,
-        backgroundColor: "#fff",
-        opacity: 0.5,
+        // backgroundColor: "#fff",
+        // opacity: 0.5,
         width: "100%",
         height: "100%",
         position: "absolute",
@@ -31,12 +32,12 @@ var styles = StyleSheet.create({
     },
     markerPosTest: {
         position: "absolute",
+        backgroundColor: '#fff',
         top: "30%",
         left: "50%",
         zIndex: 101,
         width: "5%",   
         height: "5%",
-        backgroundColor: "blue",
         color: "red"
     } 
 });

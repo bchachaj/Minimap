@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Dimensions } from 'react-native'
-import { Appbar, Card, Button, Avatar } from 'react-native-paper';
+import { Text, View, StyleSheet, Dimensions, Image } from 'react-native'
+import { Appbar, Card, Button, Avatar, TextInput, IconButton, Colors } from 'react-native-paper';
 import { Actions } from 'react-native-router-flux';
 
 import ImagePicker from 'react-native-image-picker';
@@ -9,6 +9,8 @@ export default class UserSelectScreen extends Component {
 
     state = {
         loadingImage: false, 
+        mapData: {}, 
+        mapName: ''
     }
 
     constructor(props) {
@@ -16,6 +18,15 @@ export default class UserSelectScreen extends Component {
         this.handleImageUpload = this.handleImageUpload.bind(this);
         this.renderButton = this.renderButton.bind(this);
         this.toggleLoadingState = this.toggleLoadingState.bind(this);
+        this.createMap = this.createMap.bind(this);
+    }
+
+
+    createMap() {   
+        // reach utility to create map in db
+        
+        //access map scene with params 
+        Actions.map({ mapData: this.state.mapData })
     }
 
 
@@ -29,6 +40,7 @@ export default class UserSelectScreen extends Component {
         };
 
 
+        // loading indicator on Button, lightbox will be better UX
         this.toggleLoadingState();
 
         ImagePicker.showImagePicker(options, (response) => {
@@ -40,7 +52,6 @@ export default class UserSelectScreen extends Component {
 
                 // add dialog
             } else {
-                // You can also display the image using data:
                 const source = { uri: 'data:image/jpeg;base64,' + response.data };
                 const initMapScale = (Dimensions.get('window').width / response.width);
 
@@ -50,7 +61,9 @@ export default class UserSelectScreen extends Component {
                     initMapScale,
                     imgSrc: source
                 };
-                Actions.map({ mapData: PARAMS })
+                
+                this.setState({ ...this.state, mapData: PARAMS }, () => this.createMap()); 
+
             }
 
             this.toggleLoadingState();
@@ -77,6 +90,7 @@ export default class UserSelectScreen extends Component {
     render() {
         return (
             <View>
+        
                 <Appbar.Header style={{ zIndex: 5 }}>
                     <Appbar.BackAction
                         onPress={this._goBack}
@@ -108,7 +122,8 @@ export default class UserSelectScreen extends Component {
                         <Text>SessionListView</Text>
                     </Card.Content>
                 </Card>
-
+   
+    
             </View>
         )
     }
