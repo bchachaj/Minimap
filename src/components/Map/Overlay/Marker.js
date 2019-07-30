@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, } from 'react-native'
+import { View, Text, StyleSheet, Image, Dimensions } from 'react-native'
 import { IconButton, Colors } from 'react-native-paper';
 
 import image from './../../../static/my_location.png';
@@ -26,15 +26,13 @@ var styles = StyleSheet.create({
 
     markerPosTest: {
         position: "absolute",
-        backgroundColor: 'blue',
         top: "30%",
         left: "50%",
         zIndex: 200,
-        width: "15%",
-        height: "15%",
+        width: Dimensions.get('window').width * .35,
+        height: Dimensions.get('window').width * .40,
         color: "red",
-        // padding: 100,
-        minWidth: 200
+        minWidth: 50
     }
 });
 
