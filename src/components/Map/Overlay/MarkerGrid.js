@@ -2,16 +2,44 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet } from 'react-native'
 import Marker from './Marker';
 
+//stub data - delete 
+const markers = require('./markers.json');
+
 export default class MarkerGrid extends Component {
     state = {
         markers: []
     }
 
+    componentDidMount() {
+        this.setState({ markers: markers.markers });
+    }
+
+
 
     render() {
+        console.log(this.state.markers);
+        
+        let markerComponents; 
+
+        if(this.state.markers.length !== 0) {
+            markerComponents = this.state.markers.map((marker, i) =>  {
+                console.log(marker);
+                return (
+                    <Marker 
+                        posX={marker.posX}
+                        posY={marker.posX}
+                        active={marker.active}
+                        key={i}
+                    />
+                );
+            });
+        }
+        // this.state.markers.map((el) => console.log(el))
+
         return (
             <View style={styles.overlayTest}>
-                <Marker/>
+                {/* <Marker/> */}
+                {markerComponents}
             </View>
         )
     }
@@ -29,15 +57,6 @@ var styles = StyleSheet.create({
         position: "absolute",
         top: 0,
         left: 0
-    },
-    markerPosTest: {
-        position: "absolute",
-        backgroundColor: '#fff',
-        top: "30%",
-        left: "50%",
-        zIndex: 101,
-        width: "5%",   
-        height: "5%",
-        color: "red"
-    } 
+    }
+  
 });

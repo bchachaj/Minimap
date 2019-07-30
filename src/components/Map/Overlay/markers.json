@@ -1,0 +1,29 @@
+{
+    "markers": [
+    {
+        "posX": 10,
+        "posY": 90, 
+        "active": false
+    },
+    {
+        "posX": 90,
+        "posY": 10, 
+        "active": false
+    },
+    {
+        "posX": 10,
+        "posY": 40, 
+        "active": false
+    },
+    {
+        "posX": 45,
+        "posY": 50, 
+        "active": false
+    },
+    {
+        "posX": 55,
+        "posY": 16, 
+        "active": false
+    }
+    ]
+}
