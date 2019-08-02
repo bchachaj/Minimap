@@ -21,6 +21,7 @@ export default class MapView extends Component {
     _onMore = () => console.log('Shown more');
 
 
+
     render() {
         return (
             <Fragment>
@@ -37,7 +38,7 @@ export default class MapView extends Component {
                 </Appbar.Header>
 
 
-                <MapTile mapData={this.state.mapData}/>
+                <MapTile mapData={this.state.mapData} />
             </Fragment>
         )
     }

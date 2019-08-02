@@ -47,7 +47,6 @@ export default class MapTile extends Component {
                     supportedOrientations={['portrait', 'portrait-upside-down', 'landscape', 'landscape-left', 'landscape-right']}
                     style={styles.zoom}
                     onMove={(e) => (console.log(e))}
-                    // onLongPress={(e) => (this.setState({ initMapScale: initMapScale }))}
                     centerOn={{ x: 0, y: 0, scale: initMapScale, duration: 1 }}
                 >
 
