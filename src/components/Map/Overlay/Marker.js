@@ -25,12 +25,18 @@ const Marker = (props) => {
     const dynamicStyles = {
         markerStateStyle: {
             top: `${posY}%`,
-            left: `${posX}%`
+            left: `${posX}%`,
+            position: "absolute",
+            zIndex: 200,
+            width: Dimensions.get('window').width * .35,
+            height: Dimensions.get('window').width * .40,
         }
     }
 
+    console.log(dynamicStyles.markerStateStyle)
+
     return (
-        <View style={[staticStyles.markerStyles, dynamicStyles.markerStateStyle]}>
+        <View style={dynamicStyles.markerStateStyle}>
             <TouchableHighlight 
                 style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0 }}
                 onPress={this.markerTouchEvent}>
@@ -47,11 +53,10 @@ const Marker = (props) => {
 var staticStyles = StyleSheet.create({
     markerStyles: {
         position: "absolute",
-        top: "30%",
-        left: "50%",
         zIndex: 200,
         width: Dimensions.get('window').width * .35,
         height: Dimensions.get('window').width * .40,
+        borderWidth: 1
     }
 });
 

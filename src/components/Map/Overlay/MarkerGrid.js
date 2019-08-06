@@ -27,10 +27,6 @@ export default class MarkerGrid extends Component {
         let xPosPercentage = (e.nativeEvent.locationX / this.state.dimensions.width) * 100;
         let yPosPercentage = (e.nativeEvent.locationY / this.state.dimensions.width) * 100;
 
-        // xPosPercentage = parseFloat(Math.round(xPosPercentage * 100) / 100).toFixed(3);
-        // yPosPercentage = parseFloat(Math.round(yPosPercentage * 100) / 100).toFixed(3);
-        // xPosPercentage = parseFloat(Math.round(xPosPercentage * 100) / 100).toFixed(3);
-        // yPosPercentage = parseFloat(Math.round(yPosPercentage * 100) / 100).toFixed(3);
         console.log(xPosPercentage, yPosPercentage);
         
         const newMarker = {
@@ -41,7 +37,6 @@ export default class MarkerGrid extends Component {
       
 
         markers.push(newMarker);
-
         this.setState({ ...this.state, markers})
         // need to calculate marker X+y by calculating image width by event coordinates to give percentage.
         
@@ -90,7 +85,11 @@ var styles = StyleSheet.create({
         height: "100%",
         position: "absolute",
         top: 0,
-        left: 0
+        left: 0,
+        borderWidth: 1,
+        borderColor: "black",
+        // backgroundColor: "black",
+        opacity: 0.5
     }
   
 });
