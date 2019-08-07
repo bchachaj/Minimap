@@ -1,0 +1,35 @@
+{
+    "markers": [
+    {
+        "id": 101,
+        "posX": 80,
+        "posY": 10, 
+        "active": false,
+        "markerType": "current_location",
+        "userId": 13457867757, 
+        "description": "This is a significant loc",
+        "timestamp": 1565153805241
+    },
+    {
+        "id": 102,
+        "posX": 20,
+        "posY": 80, 
+        "active": false,
+        "markerType": "destination",
+        "userId": 13457867757, 
+        "description": "This is a significant loc",
+        "timestamp": 1565153805241
+    },
+    {
+        "id": 103,
+        "posX": 30,
+        "posY": 60, 
+        "active": false,
+        "markerType": "location",
+        "userId": 13457867757, 
+        "description": "This is an arbitrary loc",
+        "timestamp": 1565153805241
+    }
+    
+    ]
+}

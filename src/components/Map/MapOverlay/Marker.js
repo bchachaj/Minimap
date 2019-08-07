@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, StyleSheet, Image, Dimensions, TouchableHighlight } from 'react-native'
+import { View, StyleSheet, Image, Dimensions, TouchableHighlight } from 'react-native'
 import { IconButton, Colors } from 'react-native-paper';
 
 import image from './../../../static/my_location.png';
@@ -22,7 +22,7 @@ const Marker = (props) => {
 
     const { posX, posY, is_active } = props;
     // 
-    const dynamicStyles = {
+    const styles = {
         markerStateStyle: {
             top: `${posY}%`,
             left: `${posX}%`,
@@ -33,11 +33,9 @@ const Marker = (props) => {
         }
     }
 
-    // console.log(dynamicStyles.markerStateStyle)
-
     return (
-        <View style={dynamicStyles.markerStateStyle}>
-            <TouchableHighlight 
+        <View style={styles.markerStateStyle}>
+            <TouchableHighlight
                 style={{ width: "100%", height: "100%", position: "absolute", top: 0, left: 0 }}
                 onPress={this.markerTouchEvent}>
                 <Image
@@ -48,16 +46,5 @@ const Marker = (props) => {
         </View>
     )
 }
-
-
-var staticStyles = StyleSheet.create({
-    markerStyles: {
-        position: "absolute",
-        zIndex: 200,
-        width: Dimensions.get('window').width * .35,
-        height: Dimensions.get('window').width * .40,
-        borderWidth: 1
-    }
-});
 
 export default Marker

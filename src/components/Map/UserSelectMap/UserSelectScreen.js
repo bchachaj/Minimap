@@ -1,10 +1,17 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, Dimensions, Image } from 'react-native'
-import { Appbar, Card, Button, Avatar, TextInput, IconButton, Colors } from 'react-native-paper';
+import { Appbar, Card, Button, Avatar} from 'react-native-paper';
 import { Actions } from 'react-native-router-flux';
 
 import ImagePicker from 'react-native-image-picker';
 
+const ImagePickerOptions = {
+    title: 'Upload image for map',
+    storageOptions: {
+        skipBackup: true,
+        path: 'images',
+    },
+};
 export default class UserSelectScreen extends Component {
 
     state = {
@@ -23,23 +30,15 @@ export default class UserSelectScreen extends Component {
 
 
     createMap() {   
-        // reach utility to create map in db
-        
-        //access map scene with params 
+        // reach utility to create map in db, upon sucess >>
+             //access map scene with params 
         Actions.map({ mapData: this.state.mapData })
     }
 
 
     handleImageUpload() {
-        const options = {
-            title: 'Upload image for map',
-            storageOptions: {
-                skipBackup: true,
-                path: 'images',
-            },
-        };
-
-
+        const options = ImagePickerOptions;
+        
         // loading indicator on Button, lightbox will be better UX
         this.toggleLoadingState();
 
@@ -76,15 +75,14 @@ export default class UserSelectScreen extends Component {
     }
   
     renderButton() {
-        if(this.state.loadingImage) {
-            return (
-                <Button icon="add-a-photo" mode="contained" loading onPress={() => this.handleImageUpload()}>Loading</Button>
-            );
-        } else {
-            return (
-                <Button icon="add-a-photo" mode="contained" onPress={() => this.handleImageUpload()}>Upload</Button>
-            );
-        }
+        const loading = this.state.loadingImage; 
+
+        return (
+            <Button icon="add-a-photo" 
+                    mode="contained" 
+                    loading={loading} 
+                    onPress={() => loading ? loading : this.handleImageUpload()}>{loading ? "Loading" : "Upload"}</Button>
+        );
     }
  
     render() {

@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { ScrollView, Image, StyleSheet, Dimensions, View } from 'react-native'
 
 import ImageZoom from 'react-native-image-pan-zoom';
-import MarkerGrid from './../Overlay/MarkerGrid';
+import MarkerGrid from './../MapOverlay/MarkerGrid';
 
-const img = require('./../../../static/map1.jpeg'); 
+const img = require('./../../../static/map1.jpeg');
 
 export default class MapTile extends Component {
 
@@ -27,20 +27,22 @@ export default class MapTile extends Component {
         // }
     }
 
-    placeMarker = (e) => { 
+    placeMarker = (e) => {
         console.log(e);
     }
 
     render() {
-        
-        const { imgHeight, imgSrc, imgWidth, initMapScale } = this.state; 
+
+        const { imgHeight, imgSrc, imgWidth, initMapScale } = this.state;
+
         const addViewMargin = (imgHeight * 0.05);
         const calcViewStyles = { marginBottom: addViewMargin, height: imgHeight * 1.1, marginTop: -65 };
+        const { width, height } = Dimensions.get('window');
 
         return (
-            <View style={[styles.viewStyles, calcViewStyles]}>
-                <ImageZoom cropWidth={Dimensions.get('window').width}
-                    cropHeight={Dimensions.get('window').height}
+            <ScrollView style={[styles.viewStyles, calcViewStyles]}>
+                <ImageZoom cropWidth={width}
+                    cropHeight={height}
                     imageWidth={imgWidth}
                     imageHeight={imgHeight}
                     panToMove={true}
@@ -55,16 +57,18 @@ export default class MapTile extends Component {
                     centerOn={{ x: 0, y: 0, scale: initMapScale, duration: 1 }}
                 >
 
-                    <MarkerGrid></MarkerGrid>
+                    <MarkerGrid gridHeight={imgHeight} 
+                                gridWidth={imgWidth} 
+                                gridScale={initMapScale} />
 
                     <Image
-                    // Have to declare width/height for network or local images 
-                        style={{ width: imgWidth, height: imgHeight}}
-                        source={{ uri: imgSrc.uri }}  
-                        // source={require('./../../../static/map1.jpeg')}  
+                        // Have to declare width/height for network or local images 
+                        style={{ width: imgWidth, height: imgHeight }}
+                        source={{ uri: imgSrc.uri }}
+                    // source={require('./../../../static/map1.jpeg')}  
                     />
                 </ImageZoom>
-            </View>
+            </ScrollView>
         )
     }
 }
@@ -83,10 +87,5 @@ var styles = StyleSheet.create({
         height: "100%",
         maxWidth: "100%"
     },
-    image: {
-        flex: 1,
-        width: 1080,
-        height: 1440
-    }
 });
 
