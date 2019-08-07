@@ -11,7 +11,7 @@ const RouterComponent = () => {
     <Router sceneStyle={{ paddingTop: 0 }} hideNavBar={true}>
       <Stack hideNavBar={true}>
         {/* <Scene key="root" hideTabBar={true}> */}
-          {/* <Scene key="main" component={UserSelectScreen} hideNavBar={true} /> */}
+          <Scene key="main" component={UserSelectScreen} hideNavBar={true} />
           <Scene key="map" component={MapView} hideNavBar={true} />
 
         {/* </Scene> */}

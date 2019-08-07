@@ -10,21 +10,21 @@ export default class MapTile extends Component {
 
     constructor(props) {
         super(props)
-        // const { imgHeight, imgWidth, imgSrc, initMapScale } = props.mapData;
+        const { imgHeight, imgWidth, imgSrc, initMapScale } = props.mapData;
 
-        // this.state = {
-        //     imgWidth,
-        //     imgHeight,
-        //     initMapScale,
-        //     imgSrc
-        // }
         this.state = {
-            imgHeight: 2400,
-            imgWidth: 1800,
-            initMapScale: 0.32833333333333334,
-            imgSrc: `${require('./../../../static/map1.jpeg')}`
-
+            imgWidth,
+            imgHeight,
+            initMapScale,
+            imgSrc
         }
+        // this.state = {
+        //     imgHeight: 2400,
+        //     imgWidth: 1800,
+        //     initMapScale: 0.32833333333333334,
+        //     imgSrc: `${require('./../../../static/map1.jpeg')}`
+
+        // }
     }
 
     placeMarker = (e) => { 
@@ -60,8 +60,8 @@ export default class MapTile extends Component {
                     <Image
                     // Have to declare width/height for network or local images 
                         style={{ width: imgWidth, height: imgHeight}}
-                        // source={{ uri: imgSrc.uri }}  
-                        source={require('./../../../static/map1.jpeg')}  
+                        source={{ uri: imgSrc.uri }}  
+                        // source={require('./../../../static/map1.jpeg')}  
                     />
                 </ImageZoom>
             </View>
