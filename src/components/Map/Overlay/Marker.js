@@ -33,7 +33,7 @@ const Marker = (props) => {
         }
     }
 
-    console.log(dynamicStyles.markerStateStyle)
+    // console.log(dynamicStyles.markerStateStyle)
 
     return (
         <View style={dynamicStyles.markerStateStyle}>

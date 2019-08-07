@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { ScrollView, Image, StyleSheet, Dimensions } from 'react-native'
+import { ScrollView, Image, StyleSheet, Dimensions, View } from 'react-native'
 
 import ImageZoom from 'react-native-image-pan-zoom';
 import MarkerGrid from './../Overlay/MarkerGrid';
@@ -27,6 +27,10 @@ export default class MapTile extends Component {
         }
     }
 
+    placeMarker = (e) => { 
+        console.log(e);
+    }
+
     render() {
         
         const { imgHeight, imgSrc, imgWidth, initMapScale } = this.state; 
@@ -34,7 +38,7 @@ export default class MapTile extends Component {
         const calcViewStyles = { marginBottom: addViewMargin, height: imgHeight * 1.1, marginTop: -65 };
 
         return (
-            <ScrollView style={[styles.viewStyles, calcViewStyles]}>
+            <View style={[styles.viewStyles, calcViewStyles]}>
                 <ImageZoom cropWidth={Dimensions.get('window').width}
                     cropHeight={Dimensions.get('window').height}
                     imageWidth={imgWidth}
@@ -47,6 +51,7 @@ export default class MapTile extends Component {
                     supportedOrientations={['portrait', 'portrait-upside-down', 'landscape', 'landscape-left', 'landscape-right']}
                     style={styles.zoom}
                     onMove={(e) => (console.log(e))}
+                    onPress={(e) => this.placeMarker(e)}
                     centerOn={{ x: 0, y: 0, scale: initMapScale, duration: 1 }}
                 >
 
@@ -59,7 +64,7 @@ export default class MapTile extends Component {
                         source={require('./../../../static/map1.jpeg')}  
                     />
                 </ImageZoom>
-            </ScrollView>
+            </View>
         )
     }
 }

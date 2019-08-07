@@ -1,16 +1,19 @@
 {
     "markers": [
     {
+        "id": 101,
         "posX": 80,
         "posY": 10, 
         "active": false
     },
     {
+        "id": 102,
         "posX": 20,
         "posY": 80, 
         "active": false
     },
     {
+        "id": 103,
         "posX": 30,
         "posY": 60, 
         "active": false

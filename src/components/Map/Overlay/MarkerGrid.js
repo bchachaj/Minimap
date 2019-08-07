@@ -19,7 +19,7 @@ export default class MarkerGrid extends Component {
     }
 
     placeMarker(e) {
-        console.log(this.state);
+        // console.log(this.state);
         console.log(`place marker at ${e.nativeEvent.locationX}, ${e.nativeEvent.locationY}`)
         
         const { markers } = this.state; 
@@ -30,12 +30,11 @@ export default class MarkerGrid extends Component {
         console.log(xPosPercentage, yPosPercentage);
         
         const newMarker = {
-            "posX": Math.random() * 100,
-            "posY": Math.random() * 100,
+            "posX": xPosPercentage,
+            "posY": yPosPercentage,
             "active": false
         }
       
-
         markers.push(newMarker);
         this.setState({ ...this.state, markers})
         // need to calculate marker X+y by calculating image width by event coordinates to give percentage.
@@ -55,7 +54,7 @@ export default class MarkerGrid extends Component {
                 return (
                     <Marker 
                         posX={marker.posX}
-                        posY={marker.posX}
+                        posY={marker.posY}
                         active={marker.active}
                         key={i}
 
