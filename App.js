@@ -15,8 +15,10 @@ import MapCreateScreen from './lib/src/screens/MapCreateScreen';
 import MapFocusScreen from './lib/src/screens/MapFocusScreen';
 import MapListScreen from './lib/src/screens/MapListScreen';
 import SignUpScreen from './lib/src/screens/SignUpScreen';
+import Loading from './lib/src/screens/Loading';
 
 const switchNavigator = createSwitchNavigator({
+    Loading: Loading, 
     authFlow: createStackNavigator({
       Signup: SignUpScreen, 
       Login: LoginScreen

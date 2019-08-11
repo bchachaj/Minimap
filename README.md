@@ -10,10 +10,10 @@ Mission: Sharing granular location outside of a global context using local map (
   - <del>scaling / positioning markers based on map tile</del>   
 - Tests
 
-- Backend / data layer
+- <del>Backend / data layer</del>
 -  UI menus / logic
 
-- User authentication 
+- <del>User authentication </del>
 - Sharing map as a generated image / public webview / passcode-protected webview  
 
 Stretch: 
