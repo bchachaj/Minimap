@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Provider as AuthProvider } from './lib/src/context/AuthContext';
+import { setNavigator } from './lib/src/Router';
 
 import { 
   createAppContainer,
@@ -35,7 +36,7 @@ const App = createAppContainer(switchNavigator);
 export default () => {
   return(
     <AuthProvider>
-      <App /> 
+      <App ref={(navigator) => setNavigator(navigator)} /> 
     </AuthProvider>
   )
 };
