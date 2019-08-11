@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import { Provider as AuthProvider } from './lib/src/context/AuthContext';
+
 import { 
   createAppContainer,
   createStackNavigator, 
@@ -28,5 +30,12 @@ const switchNavigator = createSwitchNavigator({
     })
 });
 
+const App = createAppContainer(switchNavigator); 
 
-export default createAppContainer(switchNavigator);
+export default () => {
+  return(
+    <AuthProvider>
+      <App /> 
+    </AuthProvider>
+  )
+};
