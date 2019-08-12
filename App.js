@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Provider as AuthProvider } from './lib/src/context/AuthContext';
+import { Provider as MapProvider } from './lib/src/context/MapContext';
 import { setNavigator } from './lib/src/Router';
 
 import { 
@@ -37,8 +38,10 @@ const App = createAppContainer(switchNavigator);
 
 export default () => {
   return(
-    <AuthProvider>
-      <App ref={(navigator) => setNavigator(navigator)} /> 
-    </AuthProvider>
+    <MapProvider>
+      <AuthProvider>
+        <App ref={(navigator) => setNavigator(navigator)} /> 
+      </AuthProvider>
+    </MapProvider>
   )
 };
