@@ -32,7 +32,8 @@ export default class UserSelectScreen extends Component {
     createMap() {   
         // reach utility to create map in db, upon sucess >>
              //access map scene with params 
-        Actions.map({ mapData: this.state.mapData })
+        // Actions.map({ mapData: this.state.mapData })
+        console.log(this.state.mapData);
     }
 
 
@@ -49,19 +50,29 @@ export default class UserSelectScreen extends Component {
             } else if (response.error) {
                 console.log('ImagePicker Error: ', response.error);
 
-                // add dialog
+                
+            // add dialog
+            }
+            else if (response.fileSize >= 20553050) {
+                console.log('keep image upload under 2mb')
             } else {
                 const source = { uri: 'data:image/jpeg;base64,' + response.data };
                 const initMapScale = (Dimensions.get('window').width / response.width);
-
-                const PARAMS = {
+                
+                const clientPARAMS = {
                     imgWidth: response.width,
                     imgHeight: response.height,
                     initMapScale,
                     imgSrc: source
                 };
+
+                const serverPARAMS = response;
+                console.log(response)
+
+                // const uploadParams = { fileName: response.fileName }
+                this.props.upload({ fileName: response.fileName })
                 
-                this.setState({ ...this.state, mapData: PARAMS }, () => this.createMap()); 
+                this.setState({ ...this.state, mapData: clientPARAMS }, () => this.createMap()); 
 
             }
 
@@ -89,7 +100,7 @@ export default class UserSelectScreen extends Component {
         return (
             <View>
         
-                <Appbar.Header style={{ zIndex: 5 }}>
+                {/* <Appbar.Header style={{ zIndex: 5 }}>
                     <Appbar.BackAction
                         onPress={this._goBack}
                     />
@@ -97,7 +108,7 @@ export default class UserSelectScreen extends Component {
                         title="Create or Select"
                         subtitle="Upload an image or choose an existing session"
                     />
-                </Appbar.Header>
+                </Appbar.Header> */}
                 <Card style={styles.userSelectCard}>
                     <Card.Title
                         title="New Map"
